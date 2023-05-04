@@ -7,4 +7,12 @@ interface ProductsRepository {
     fun getAllProducts(): Flow<Result<List<Product>>>
 
     fun getProductById(id: Int): Flow<Result<Product>>
+
+    fun getCategories(): Flow<Result<List<Category>>>
+
+    fun getFlashProducts(): Flow<Result<List<Product>>>
+
+    fun getProductsByTextOrCategory(text: String, category: String): Flow<Result<List<Product>>>
+
+    fun getBanners(): Flow<Result<List<Int>>>
 }

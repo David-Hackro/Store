@@ -12,4 +12,9 @@ interface ProductsApi {
 
     @GET("products")
     suspend fun getProductById(@Query("per_page") id: Int): ResponseProduct
+
+
+    @GET("products/categories")
+    suspend fun getCategories(): List<String>
+
 }

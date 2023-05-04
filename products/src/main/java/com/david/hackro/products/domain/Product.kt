@@ -1,6 +1,5 @@
 package com.david.hackro.products.domain
 
-import androidx.compose.runtime.produceState
 import com.david.hackro.products.data.local.ProductEntity
 
 data class Product(

@@ -1,4 +1,4 @@
-package com.david.hackro.products.ui.theme
+package com.david.hackro.products.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
