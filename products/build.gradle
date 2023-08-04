@@ -14,8 +14,6 @@ android {
         //applicationId "com.david.hackro.products"
         minSdk 26
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -67,7 +65,7 @@ dependencies {
 
     implementation 'androidx.core:core-ktx:1.10.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -105,7 +103,7 @@ dependencies {
 
     testImplementation 'io.mockk:mockk:1.13.5'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
-    testImplementation 'org.jetbrains.kotlin:kotlin-test:1.8.10'
+    testImplementation 'org.jetbrains.kotlin:kotlin-test:1.8.20'
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'
     testImplementation 'app.cash.turbine:turbine:0.12.3'
     testImplementation 'com.google.dagger:hilt-android-testing:2.45'

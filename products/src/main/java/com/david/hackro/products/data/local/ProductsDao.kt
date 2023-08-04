@@ -3,6 +3,7 @@ package com.david.hackro.products.data.local
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Upsert
+import java.util.concurrent.Flow
 
 @Dao
 interface ProductsDao {
@@ -21,6 +22,9 @@ interface ProductsDao {
 
     @Query("SELECT * from CategoryEntity")
     suspend fun getCategories(): List<CategoryEntity>
+
+    @Query("SELECT * from CategoryEntity")
+    fun getCategoriesx(): kotlinx.coroutines.flow.Flow<List<CategoryEntity>>
 
     @Upsert
     suspend fun insertCategories(productList: List<CategoryEntity>)

@@ -14,9 +14,16 @@ import com.david.hackro.products.domain.Category
 import com.david.hackro.products.domain.Product
 import com.david.hackro.products.domain.ProductsRepository
 import com.david.hackro.products.domain.toDomain
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.retryWhen
 import timber.log.Timber
+import java.io.IOException
 import javax.inject.Inject
 
 class ProductsRepositoryImpl @Inject constructor(
@@ -171,6 +178,35 @@ class ProductsRepositoryImpl @Inject constructor(
                 emit(Result.failure(it))
             }
         }
+    }
+
+    override fun getFlashProductsx(): Flow<Result<List<Category>>> = flow {
+        localSource.getCategoriesx().map { itemList ->
+            itemList.map { it.toDomain(getCategoryIcon(it.category)) }
+        }.onEach { result ->
+            if (result.isEmpty()) {
+                refreshCategories()
+            }
+        }.map {
+            emit(Result.success(it))
+        }.catch {
+            if (it is CancellationException) {
+                throw it
+            }
+
+            emit(Result.failure(it))
+        }
+    }
+
+    private suspend fun refreshCategories() {
+        remoteSource
+            .getCategories()
+            .map { category ->
+                createCategoryEntity(category)
+            }
+            .also {
+                localSource.insertCategories(it)
+            }
     }
 
     override fun getProductsByTextOrCategory(

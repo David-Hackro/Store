@@ -14,5 +14,5 @@ val categoryList = listOf(
     R.drawable.electronics,
     R.drawable.jewelry,
     R.drawable.mens,
-    R.drawable.womens,
+    R.drawable.women,
 )

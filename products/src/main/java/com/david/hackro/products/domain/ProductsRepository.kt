@@ -12,6 +12,8 @@ interface ProductsRepository {
 
     fun getFlashProducts(): Flow<Result<List<Product>>>
 
+    fun getFlashProductsx(): Flow<Result<List<Category>>>
+
     fun getProductsByTextOrCategory(text: String, category: String): Flow<Result<List<Product>>>
 
     fun getBanners(): Flow<Result<List<Int>>>
